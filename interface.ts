@@ -6,3 +6,10 @@ interface User {
 const mainUser: User = {
     name: "Evzoda"
 }
+
+
+//Según la documentación de typeScript es bueno usar siempre interfaces, siempre, hasta que definitivamente ya no se pueda usar-
+
+interface Alumno{
+  legajo:string
+}

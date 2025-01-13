@@ -61,3 +61,53 @@ function sum(c: number, d: number): number {
   a = [1] as unknown as number; //correcto
   */
 
+//Type
+//es un alias para un tipo de dato
+
+type userType = {
+  name: string;
+  getName: () => string;
+  setName: (name: string) => void;
+};
+
+//El código anterior, aunque se puede usar de la misma manera que una interface y que aparentemente es lo mismo, es distinto puesto que, a diferencia de una interface, un type no puede ser extendido, es decir, no se puede hacer una herencia de un type, por lo que si se necesita hacer una herencia de un type, se debe usar una interface.
+
+interface Alumno {
+  legajo: string;
+}
+
+class UserC {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  setName(name: string) {
+    this.name = name;
+  }
+}
+
+//Forma larga de hacer uso de la clase UserClass
+const userS: UserC = {
+  name: "Geto",
+  getName: () => {
+    return "Suguru";
+  },
+  setName: (name: string) => {},
+};
+
+type usrComplete = UserC     & Alumno; //Se unificaron dos tipos de datos, en este caso, se unificaron los tipos de datos de la interface Alumno y de la clase UserClass, adicionalmente, se usó el operador lógico '&' por lo que a la hora de modelar la clase  deben existir todos los atributos; en caso de que se hubiese utilizado el operador '|' no sería necesario que se cumplan la totalidad de atributos (con que uno estuviese completo, funcionaría).
+
+//De esta forma se asignan los valores y/o datos de una interface y una clase a un type, en este caso, se asignan los valores de la interface Alumno y de la clase UserClass a un type llamado usrComplete, de esta forma se pueden asignar los valores de una interface y una clase a un type, pero no se pueden asignar los valores de un type a una interface o a una clase.
+
+const userAlias: usrComplete = {
+  name: "Andrew",
+  setName: (name: string) => {},
+  getName: () => "Andrew",
+  legajo: "12345",
+}; //De esta forma se modela el objeto userAlias con los valores de la interface Alumno y de la clase UserClass.
